@@ -5,11 +5,28 @@ spring:
         jwt:
           issuer-uri: http://localhost:8080/realms/myRealm
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            client-id: myApp
+            client-secret: zMb6ATVgMk6BBC6u3KxxjYobiAhr3mYL
+            scope: openid+profile+email
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/myRealm
+            
 server:
   port: 8081
 
-jwt:
-  auth:
-    converter:
-      resource-id: myApp
-      principle-attribute: preferred_username
+#jwt:
+#  auth:
+#    converter:
+#      resource-id: myApp
+#      principle-attribute: preferred_username
+      
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+     
